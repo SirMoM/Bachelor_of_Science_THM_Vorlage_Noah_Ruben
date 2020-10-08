@@ -1,0 +1,88 @@
+% !TEX encoding = UTF-8 Unicode
+% !TEX root =  Bachelorarbeit.tex
+
+% Einfache Definition der Zeilenabstände und Seitenränder etc. ------------
+\usepackage{setspace}
+\usepackage{geometry}
+\onehalfspacing{}
+
+
+% Seitenränder ------------------------------------------------------------------------------------
+\setlength{\topskip}{\ht\strutbox} % behebt Warnung von geometry
+\geometry{
+    % showframe,
+    includefoot,
+    paper=a4paper,
+    % THM Seitenabstände
+    left=4cm,
+    right=1.5cm,
+    top=3cm,
+    bottom=2cm}
+
+
+% Kopf- und Fußzeilen --------------------------------------------------------------------------
+\pagestyle{scrheadings}
+
+% Kopf- und Fußzeile auch auf Kapitelanfangsseiten
+\renewcommand*{\chapterpagestyle}{scrheadings} 
+
+% Schriftform der Kopfzeile
+\renewcommand{\headfont}{\normalfont}
+
+% Höhe der Kopfzeile und Fußzeile
+\setlength{\headheight}{22mm} 
+\setlength{\footheight}{12mm}
+
+% sonstige typographische Einstellungen ---------------------------------------------------
+% erzeugt ein wenig mehr Platz hinter einem Punkt
+\frenchspacing{}
+
+% Schusterjungen und Hurenkinder vermeiden: https://de.wikipedia.org/wiki/Hurenkind_und_Schusterjunge
+\clubpenalty = 10000
+\widowpenalty = 10000 
+\displaywidowpenalty = 10000
+
+% Quellcode-Ausgabe formatieren
+\lstset{
+    numbers=none,
+    numberstyle=\tiny,
+    numbersep=5pt,
+    breaklines=true,
+    numberbychapter=false
+    %, tabsize=3
+}
+
+% Fußnoten fortlaufend durchnummerieren
+\counterwithout{footnote}{chapter}
+
+% Biblatex Einstellungen -------------------------------------------------------------------------------
+
+% Anpassung des Verzeichnisses
+\setlength\bibitemsep{2\itemsep} % Verdoppeln des Abstandes zwischen den Einträgen
+\setlength{\bibhang}{0.2cm} % Einzug nach erster Zeile eines Eintrags
+
+% Fette Labels der Einträge
+\xpretobibmacro{author}{\mkbibbold\bgroup}{}{}
+\xapptobibmacro{author}{\egroup}{}{}
+\xpretobibmacro{bbx:editor}{\mkbibbold\bgroup}{}{}
+\xapptobibmacro{bbx:editor}{\egroup}{}{}
+\renewcommand*{\labelnamepunct}{\mkbibbold{\addcolon\space}}
+
+% Zeilen Umbrüche in der Literatur
+
+% If you want to break on URL numbers
+\setcounter{biburlnumpenalty}{9999}
+% If you want to break on URL lower case letters
+\setcounter{biburllcpenalty}{9999}
+% If you want to break on URL UPPER CASE letters
+\setcounter{biburlucpenalty}{9999}
+
+% Kommas zwischen Fußnoten
+\KOMAoption{footnotes}{multiple}
+
+% Durchgängiges nummerieren von Bildern 
+\counterwithout{figure}{chapter}
+
+% Durchgängiges nummerieren von Tabellen
+\counterwithout{table}{chapter}
+

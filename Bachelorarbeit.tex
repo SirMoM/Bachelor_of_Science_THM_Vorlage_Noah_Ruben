@@ -1,0 +1,152 @@
+% !TEX encoding = UTF-8 Unicode
+% !TEX root =  Bachelorarbeit.tex
+
+% ------------------------------------------------------------------------------------------------------
+%	Formatvorlage für wissenschaftliche Arbeiten (Diplomarbeit, Bachelorarbeit, Masterarbeit)
+% ------------------------------------------------------------------------------------------------------
+%	ursprünglich erstellt von Stefan Macke, 24.04.2009
+%	http://blog.stefan-macke.de
+%
+%	erweitert von Felix Rupp
+%	http://www.felixrupp.com/
+%
+%   Nochmals erweitert von Noah Ruben für die Anforderungen der THM
+%   https://github.com/SirMoM
+
+% Dokumentenkopf ---------------------------------------------------------------------------------------
+%   Diese Vorlage basiert auf "scrreprt" aus dem koma-script.
+% ------------------------------------------------------------------------------------------------------
+\documentclass[
+    12pt,                   % Schriftgröße
+    ngerman,                % für Umlaute, Silbentrennung etc.
+    a4paper,                % Papierformat
+    twoside = false,        % einseitiges Dokument
+    titlepage,              % es wird eine Titelseite verwendet
+    parskip=half,           % Abstand zwischen Absätzen (halbe Zeile)
+    headings=normal,        % Größe der Überschriften verkleinern
+    bibliography=totoc,     % Literaturverzeichnis im Inhaltsverzeichnis aufführen
+    captions=tableheading,  % Beschriftung von Tabellen unterhalb ausgeben
+    headsepline,            %Headerline
+    final                   % Status des Dokuments (final/draft)
+]{scrreprt}
+
+% Abstand nach den fußnoten Zahlen -----------------------------------------------------------------------------
+\usepackage[hang]{footmisc}
+\setlength{\footnotemargin}{12pt}
+
+% UTF8 und T1 Fontencoding -----------------------------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% Meta-Informationen -----------------------------------------------------------------------------------
+%   Informationen über das Dokument, wie z.B. Titel, Autor, Matrikelnr. etc
+%   werden in der Datei Meta.tex definiert und können danach global 
+%   verwendet werden.
+% ------------------------------------------------------------------------------------------------------
+\input{Meta}
+
+% Benötigte Packages -----------------------------------------------------------------------------------
+%   LaTeX-Packages, die benötigt werden, sind in die Datei Packages.tex
+%   "ausgelagert", um diese Vorlage möglichst übersichtlich zu halten.
+% ------------------------------------------------------------------------------------------------------
+\input{Packages}
+
+% Eigene befehle
+\input{Befehle}
+
+% Kopf- und Fußzeilen, Seitenränder etc. ---------------------------------------------------------------
+\input{Seitenstil}
+
+% eigene Definitionen für Silbentrennung ---------------------------------------------------------------
+\include{Silbentrennung}
+
+% Literaturverzeichnis ---------------------------------------------------------------------------------
+%   Das Literaturverzeichnis wird aus der BibTeX-Datenbank "*.bib"
+%   erstellt.
+% ------------------------------------------------------------------------------------------------------
+\addbibresource{references.bib}
+
+% auch subsubsections nummerieren ----------------------------------------------------------------------
+\setcounter{secnumdepth}{2}
+
+% Nummerierungsebenen im Inhaltsverzeichnis
+\setcounter{tocdepth}{2}
+
+% Das eigentliche Dokument -----------------------------------------------------------------------------
+%   Der eigentliche Inhalt des Dokuments beginnt hier. Die einzelnen Seiten
+%   und Kapitel werden in eigene Dateien ausgelagert und hier nur inkludiert.
+% ------------------------------------------------------------------------------------------------------
+\begin{document}
+
+% Deckblatt --------------------------------------------------------------------------------------------
+\include{Deckblatt}
+\clearpage{}
+
+% Abstract ---------------------------------------------------------------------------------------------
+\input{Abstract.tex}
+\clearpage
+
+% Sperrvermerk -----------------------------------------------------------------------------------------
+\input{Sperrvermerk.tex}
+\clearpage{}
+
+% Eidesstattliche Erklärung-----------------------------------------------------------------------------
+\input{Eidesstattliche_Erklaerung.tex}
+\clearpage{}
+
+\pagenumbering{Roman}
+\verFootHead{1}
+
+\phantomsection{} % Sorgt für korrekte Aufnahme des Inhaltsverzeichnisses in das Inhaltsverzeichnis
+\addcontentsline{toc}{section}{Inhaltsverzeichnis}
+\tableofcontents{}
+\clearpage{}
+
+
+
+% Abkürzungsverzeichnis --------------------------------------------------------------------------------
+\input{Abkuerzungsverzeichnis}
+\clearpage{}
+
+% Abbildungsverzeichnis Tabellenverzeichnis Codeverzeichnis --------------------------------------------
+\phantomsection
+\addcontentsline{toc}{section}{Abbildungsverzeichnis}
+\listoffigures
+
+\phantomsection
+\addcontentsline{toc}{section}{Tabellenverzeichnis}
+\listoftables
+
+\phantomsection
+\addcontentsline{toc}{section}{Codeverzeichnis}
+\lstlistoflistings
+
+\clearpage
+
+% Einstellungen für den Text-Teil des Berichtes
+\pagenumbering{arabic}
+\resetFootHead{1}
+
+\justifying % Block-Satz
+
+\input{Einleitung.tex}
+\clearpage
+
+\input{Problemstellung_Ziele_Vorgehensweise.tex}
+\clearpage
+
+\input{Fazit_Zukunftsausblick_Handlungsempfehlung.tex}
+\clearpage
+
+% Literaturverzeichnis 
+\setcounter{biburlucpenalty}{9000}
+\printbibliography
+\clearpage
+
+% Anhang und Einstellungen dafür
+\pagenumbering{Alph}
+\ohead{Anhang-\pagemark}
+\verFootHead{1}
+\input{Anhang.tex}
+
+\end{document}

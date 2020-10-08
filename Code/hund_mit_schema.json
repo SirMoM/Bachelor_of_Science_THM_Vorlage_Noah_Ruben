@@ -1,0 +1,8 @@
+{
+    "_id": 0,
+    "schemaId": "http://example.com/hund.json",
+    "anzahl_beine": 4,
+    "fellfarbe": "braun",
+    "saegetier": true,
+    "schuppenfarbe": "gelb"
+}

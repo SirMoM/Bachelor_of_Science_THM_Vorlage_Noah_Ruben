@@ -1,0 +1,33 @@
+[
+    {
+        "_id": 0,
+        "tierart": "Hund",
+        "anzahl_beine": 4,
+        "fellfarbe": "braun",
+        "saeugetier": true
+    },
+    {
+        "_id": 1,
+        "tierart": "Fisch",
+        "schuppenfarbe": "blau",
+        "saeugetier": false
+    },
+    {
+        "_id": 2,
+        "tierart": "Spinne",
+        "anzahl_beine": 8,
+        "saeugetier": false
+    },
+    {
+        "_id": 3,
+        "tierart": "Wal",
+        "saeugetier": true
+    },
+    {
+        "_id": 4,
+        "tierart": "Krokodil",
+        "anzahl_beine": 4,
+        "schuppenfarbe": "gruen",
+        "saeugetier": false
+    }
+]

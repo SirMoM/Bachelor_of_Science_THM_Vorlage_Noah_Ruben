@@ -1,0 +1,148 @@
+% !TEX encoding = UTF-8 Unicode
+% !TEX root =  Bachelorarbeit.tex
+
+% Abkürzungen mit korrektem Leerraum --------------------------------------------------------------------
+\newcommand{\ua}{\mbox{u.\,a.\ }}
+\newcommand{\zB}{\mbox{z.\,B.\ }}
+\newcommand{\dahe}{\mbox{d.\,h.\ }}
+\newcommand{\Vgl}{Vgl.\ }
+\newcommand{\bzw}{bzw.\ }
+\newcommand{\evtl}{evtl.\ }
+\newcommand{\etc}{etc.\ }
+
+\newcommand{\Abbildung}[1]{Abbildung~\ref{fig:#1}}
+
+\newcommand{\bs}{$\backslash$}
+
+
+% Erzeugt ein Listenelement mit fetter Überschrift ------------------------------------------------------
+\newcommand{\itemd}[2]{\item{\textbf{#1}}\\{#2}}
+
+
+% Einige Befehle zum Zitieren -------------------------------------------------------------------------
+
+% Fußnoten Zitat für Webseiten im THM-Stiel
+\DeclareCiteCommand{\footWWWcite}[\mkbibfootnote]
+  {\usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+    \printtext{Vgl.}
+    \printnames{author}
+    \
+    \printfield[citetitle]{title}%
+    \
+   	\mkbibparens{
+		\printfield{year}
+	}
+	\printfield{url}
+	\usebibmacro{urldate}
+	}
+  {\addsemicolon\space}
+  {\usebibmacro{postnote}}
+ 
+% Fußnoten Zitat im THM-Stiel  
+\DeclareCiteCommand{\footmycite}[\mkbibfootnote]
+  {\usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \printtext{Vgl.}
+   \setunit{\addnbspace}
+   \printnames{labelname}%
+   \setunit{\labelnamepunct}
+   \printfield[citetitle]{title}%
+   \ \mkbibparens{\printfield{year}}
+  }
+  {\addsemicolon\space}
+  {\usebibmacro{postnote}}
+
+% Zitat im THM-Stiel
+\DeclareCiteCommand{\mycite}
+ {\usebibmacro{prenote}}
+  {\printtext{Vgl.}
+  \printnames{author}
+  \printfield[citetitle]{title}%
+  \newunit
+    \ \mkbibparens{\printfield{year}}}
+  {\addsemicolon\space}
+  {\usebibmacro{postnote}}
+
+% Zitat für Webseiten im THM-Stiel
+\DeclareCiteCommand{\myWWWcite}
+  {\usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \printtext{Vgl.}
+   \setunit{\addnbspace}
+   \printnames{labelname}%
+   \setunit{\labelnamepunct}
+   \printfield[citetitle]{title}%
+   \ \mkbibparens{\printfield{year}}
+  }
+  {\addsemicolon\space}
+  {\usebibmacro{postnote}}
+
+
+% zum Ausgeben von Autoren
+\newcommand{\AutorName}[1]{\textsc{#1}}
+\newcommand{\Autor}[1]{\AutorName{\citeauthor{#1}}}
+
+% verschiedene Befehle um Wörter semantisch auszuzeichnen -----------------------------------------------
+\newcommand{\NeuerBegriff}[1]{\textbf{#1}}
+
+\newcommand{\Fachbegriff}[2][\empty]{\ifthenelse{\equal{#1}{\empty}}{\textit{#2}\xspace}{\textit{#2}\xspace\footnote{#1}\nomenclature{#2}{#1}}}
+
+\newcommand{\FachbegriffSpezialA}[4]{\textit{#4}\footnote{#3}\label{fn:#1}\nomenclature{#4}{#2. Siehe auch Fu{\ss}zeile auf Seite~\pageref{fn:#1}.}}
+
+\newcommand{\FachbegriffSpezialB}[5]{\textit{#5}\footnote{#3}\label{fn:#1}\nomenclature{#4}{#2. Siehe auch Fu{\ss}zeile auf Seite~\pageref{fn:#1}.}}
+
+
+% Beträge mit Währung -----------------------------------------------------------------------------------
+\newcommand{\Betrag}[2][general]{#2\,\ifthenelse{\equal{#1}{dollar}}{\$}{}\ifthenelse{\equal{#1}{euro}}{€}{}\ifthenelse{\equal{#1}{yen}}{¥}{}\ifthenelse{\equal{#1}{cent}}{¢}{}\ifthenelse{\equal{#1}{pound}}{£}{}\ifthenelse{\equal{#1}{peso}}{₱}{}\ifthenelse{\equal{#1}{baht}}{฿}{}\ifthenelse{\equal{#1}{franc}}{₣}{}\ifthenelse{\equal{#1}{lira}}{₤}{}\ifthenelse{\equal{#1}{drachma}}{₯}{}\ifthenelse{\equal{#1}{pfennig}}{₰}{}\ifthenelse{\equal{#1}{general}}{¤}{}}
+
+
+% Sonstiges ---------------------------------------------------------------------------------------------
+% Fußnoten Layout für den Text Teil
+\newcommand{\resetFootHead}[1]{
+\setcounter{page}{#1}
+\ihead{\small{\textit{\autor}}
+       \\
+       \textsc{\chapterName}
+       \\[1ex]
+       \headmark
+    }
+\chead{}
+\ohead{\includegraphics[height=1.5cm]{\logoSP}}
+\ifoot{}
+\cfoot{}
+\ofoot{\pagemark}
+}
+% Fußnoten Layout für den Verzeichnis-Teil
+\newcommand{\verFootHead}[1]{
+\setcounter{page}{#1}
+\ihead{\textit{\headmark}}
+\chead{}
+\ohead{Verzeichnisse-\pagemark}
+\ifoot{\autor}
+\cfoot{}
+\ofoot{\includegraphics[height=1.2cm]{\logoSP}}
+}
+
+\newcommand{\setChapName}[1]{\renewcommand{\chapterName}{#1}}
+\newcommand{\qMarks}[1]{\openautoquote#1\closeautoquote}
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+
+
+\newcommand{\lref}[1]{\lstlistingname \  \ref{#1} auf der Seite \pageref{#1}}
+\newcommand{\laref}[1]{\lstlistingname \  \ref{#1} im Anhang auf der Seite \pageref{#1}}
+
+\newcommand{\figRef}[1]{\figurename \ \ref{#1}}
+\newcommand{\tabRef}[1]{\tablename \ \ref{#1}}
+
+\newcommand{\myHuge}[1]{\huge {#1} \\ \normalsize}
+\newcommand{\myLarge}[1]{\large {#1} \\ \normalsize}
+
+
+% A footnote without marker in the text
+\newcommand\plainfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}

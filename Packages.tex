@@ -1,0 +1,188 @@
+% !TEX encoding = UTF-8 Unicode
+% !TEX root =  Bachelorarbeit.tex
+
+% Grafiken -----------------------------------------------------------------------------
+% Einbinden von JPG-Grafiken ermöglichen
+\usepackage[dvips,final]{graphicx}
+
+% Rotation von Bildern ermöglichen
+\usepackage{rotating}
+
+% hier liegen die Bilder des Dokuments
+\graphicspath{{Bilder/}}
+
+% Anpassung des Seitenlayouts ---------------------------------------------------
+%   siehe Seitenstil.tex
+% -----------------------------------------------------------------------------------------
+\usepackage[
+    automark, % Kapitelangaben in Kopfzeile automatisch erstellen
+    headsepline, % Trennlinie unter Kopfzeile
+    ilines % Trennlinie linksbündig ausrichten
+]{scrlayer-scrpage}
+
+\automark[section]{section}
+
+% Anpassung an Landessprache -------------------------------------------------
+\usepackage[ngerman]{babel}
+
+\usepackage{textcomp} % Euro-Zeichen etc.
+
+
+% Schrift --------------------------------------------------------------------------------
+\usepackage{lmodern} % bessere Fonts
+
+% Arial
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+% Wird für fette Labels im Literaturverzeichnis benötigt
+\usepackage{xpatch}
+
+\usepackage[document]{ragged2e}
+
+% URL verlinken, lange URLs umbrechen etc. -------------------------------------
+\usepackage{url}
+
+% biblatex einbinden -----------------------------------------------------------------------
+\usepackage[backend=biber, hyperref=true, backref=true, backrefstyle=all+, bibstyle=authoryear, sorting=nyt, dashed=false, urldate=long, natbib=true, citestyle=authoryear-ibid]{biblatex}
+
+%\usepackage[square,sort,comma,numbers]{natbib}
+%\usepackage{cite}
+
+
+\usepackage[babel,german=quotes]{csquotes}
+
+% zum Einbinden von Programmcode -----------------------------------------------
+% um Code einzubinden
+\usepackage{listings}
+\usepackage{inputenc}
+\renewcommand{\lstlistingname}{Code}
+\renewcommand{\lstlistlistingname}{\lstlistingname -Verzeichnis}
+
+% Farben
+\usepackage[table]{xcolor}
+\definecolor{keywordLila}{RGB}{127,0,85}
+\definecolor{stringBlau}{RGB}{42,0,255}
+\definecolor{integerOrange}{RGB}{255,192,0}
+\definecolor{codeBg}{RGB}{242,242,242}
+\definecolor{grau}{RGB}{100,100,100}
+
+\definecolor{hellgelb}{rgb}{1,1,0.9}
+\definecolor{colKeys}{rgb}{0.8,0,0.5}
+\definecolor{colIdentifier}{rgb}{0.6,0,0.3}
+\definecolor{colComments}{rgb}{0,0.5,0}
+\definecolor{colString}{rgb}{0,0,1}
+
+% --------------------------------------------------------------------------------------------
+% 
+% Eigene Definitionen für Quelltext-Stile
+%
+% --------------------------------------------------------------------------------------------
+
+%Definition von JCL
+\lstdefinelanguage{JCL}{
+keywords={SYSPRINT, SYSIN, EXEC, DD, PGM, SYSOUT, SET, MAXCC, JOB, MSGCLASS, CLASS, MSGLEVEL, NOTIFY, SYSUID, DISP, SHR, DSN, DB2XQL9, TRENNER, HEADER, P,  'XQL.SYSIN', 'XQL.SYSPRINT', NEW, CATLG, CATLG, UNIT, WORK, SPACE, TRK, RLSE, DCB, DSORG, PS},
+keywordstyle=\color{keywordLila},
+sensitive=false,
+comment=[l]{//*},
+commentstyle=\color{grau},
+stringstyle=\color{stringBlau},
+morestring=[b]',
+morestring=[b]"
+}
+
+% SET  für den SQL-Code
+\lstset{
+language={SQL},
+morekeywords ={USE, ADD, ENFORCED, REFERENCES},
+frame={single},
+captionpos={b},
+keywordstyle={\color{keywordLila}},
+stringstyle={\color{stringBlau}},
+backgroundcolor={\color{codeBg}}
+commentstyle=\color{black},
+}
+
+% language define für JSON
+\lstdefinelanguage{json}{
+string=[s]{"}{"},
+comment=[l]{:},
+frame={single},
+captionpos={b},
+keywordstyle={\color{keywordLila}},
+stringstyle={\color{stringBlau}},
+backgroundcolor={\color{codeBg}},
+commentstyle=\color{red},
+literate=
+  {[}{{\textcolor{black}{[}}}{1}
+  {]}{{\textcolor{black}{]}}}{1}
+  {\{}{{\textcolor{keywordLila}{\{}}}{1}
+  {\}}{{\textcolor{keywordLila}{\}}}}{1}
+}
+
+% PDF-Optionen -------------------------------------------------------------------------
+\usepackage[
+    bookmarks,
+    bookmarksopen=true,
+    colorlinks=true,
+% diese Farbdefinitionen zeichnen Links im PDF farblich aus
+    linkcolor=red, % einfache interne Verknüpfungen
+    anchorcolor=black,% Ankertext
+    citecolor=blue, % Verweise auf Literaturverzeichniseinträge im Text
+    filecolor=magenta, % Verknüpfungen, die lokale Dateien öffnen
+    menucolor=red, % Acrobat-Menüpunkte
+    urlcolor=keywordLila,
+% diese Farbdefinitionen sollten für den Druck verwendet werden (alles schwarz):
+    % linkcolor=black, % einfache interne Verknüpfungen
+    % anchorcolor=black, % Ankertext
+    % citecolor=black, % Verweise auf Literaturverzeichniseinträge im Text
+    % filecolor=black, % Verknüpfungen, die lokale Dateien öffnen
+    % menucolor=black, % Acrobat-Menüpunkte
+    % urlcolor=black, 
+%    backref, % muss auf Grund von biblatex deaktiviert werden
+    plainpages=false, % zur korrekten Erstellung der Bookmarks
+    pdfpagelabels, % zur korrekten Erstellung der Bookmarks
+%    hypertexnames=false, % zur korrekten Erstellung der Bookmarks, wegen biblatex deaktiviert
+    linktocpage % Seitenzahlen anstatt Text im Inhaltsverzeichnis verlinken
+]{hyperref}
+
+% Befehle, die Umlaute ausgeben, führen zu Fehlern, wenn sie hyperref als Optionen übergeben werden
+\hypersetup{
+    pdftitle={\titel \untertitel},
+    pdfauthor={\autor},
+    pdfsubject={\titel \untertitel},
+    pdfkeywords={\keywords},
+}
+
+% Hycap behebt hyperref Fehler
+%\usepackage[all]{hypcap}
+
+
+% fortlaufendes Durchnummerieren der Fußnoten -------------------------------
+\usepackage{chngcntr}
+
+
+% Caption
+\usepackage{caption}
+
+% Automatisches Abkürzungsverzeichnis
+%\usepackage[printonlyused]{acronym}
+\usepackage[nolist]{acronym}
+
+% Für Enumerationes mit Buchstaben
+\usepackage{enumerate}
+
+% schönere Tabellen --------------------------------------------------------------------
+\usepackage{tabularx}
+\usepackage{multirow}
+
+% für Fußnoten in Tabellen
+%\usepackage{parnotes}
+
+%Beispieltexte
+\usepackage{blindtext}
+
+% Für H in Bildern
+\usepackage{float}
+% Für. einstellbare seperatoren
+\usepackage{booktabs}
