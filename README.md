@@ -1,6 +1,8 @@
 # Bachelor of Science Vorlage Noah Ruben
 Eine Vorlage für Bachelorarbeiten innerhalb der THM als dualer Student.
 
+## Dokumenten Preview
+[Download](https://github.com/SirMoM/Bachelor_of_Science_THM_Vorlage_Noah_Ruben/blob/Add-preview-to-README.md/Bachelor_of_Science_THM_Vorlage_Noah_Ruben.pdf)
 
 # How to use
 
